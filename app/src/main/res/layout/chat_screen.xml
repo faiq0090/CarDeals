@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frame_container"
+    tools:context="com.example.smdproject.chatscreen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="#0012BD"
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
+
+            <RelativeLayout
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="#0012BD"
+                android:orientation="horizontal"
+                tools:ignore="MissingConstraints">
+                <ImageView
+                    android:id="@+id/arrow_back15"
+                    android:layout_width="30dp"
+                    android:layout_height="70dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="25dp"
+                    android:contentDescription="Back Arrow"
+                    android:src="@drawable/arrow_back" />
+
+                <ImageView
+                    android:id="@+id/profilepic"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="52dp"
+                    android:layout_marginTop="40dp"
+                    android:contentDescription="Back Arrow"
+                    android:src="@drawable/profile" />
+
+                <TextView
+                    android:id="@+id/Name"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginStart="50sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/arrow_back15"
+                    android:text="M.Abdullah"
+                    android:textColor="@color/white"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
+                <!-- Call Icon -->
+                <ImageView
+                    android:id="@+id/CallIcon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="300dp"
+                    android:layout_marginLeft="80dp"
+                    android:layout_marginTop="40dp"
+                    android:src="@drawable/call"
+                    android:contentDescription="Call Icon"/>
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout1"
+            android:layout_width="match_parent"
+            android:layout_height="540dp"
+            android:background="@color/white"
+            android:padding="16dp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="-16dp"
+            tools:layout_editor_absoluteY="120dp">
+
+           <LinearLayout
+                android:id="@+id/message_view"
+                android:layout_width="match_parent"
+               android:orientation="vertical"
+                android:layout_height="300dp"
+                android:layout_weight="38">
+
+               <androidx.recyclerview.widget.RecyclerView
+                   android:id="@+id/messages_recycler_view"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="38"
+                   >
+
+               </androidx.recyclerview.widget.RecyclerView>
+
+           </LinearLayout>
+
+
+
+            <RelativeLayout
+                android:id="@+id/bottomBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="7dp"
+                android:background="#1EBBD3"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/GalleryButton"
+                    android:layout_width="30dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="10dp"
+                    android:contentDescription="Gallery Icon"
+                    android:onClick="onGalleryButtonClick"
+                    android:src="@drawable/gallery"
+                    app:tint="@color/white" />
+
+                <ImageView
+                    android:id="@+id/CameraButton"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="10dp"
+                    android:contentDescription="Camera Icon"
+                    android:onClick="onCameraButtonClick"
+                    android:src="@drawable/photo_camera"
+                    app:tint="@color/white" />
+
+                <!-- Text Input Field -->
+
+                <EditText
+                    android:id="@+id/editTextMessage"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="80dp"
+                    android:hint="Type something..." />
+
+
+
+                <!-- Send Button -->
+                <ImageView
+                    android:id="@+id/SendButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="285dp"
+                    android:layout_marginTop="5dp"
+                    android:contentDescription="Send Icon"
+                    android:onClick="onSendButtonClick"
+                    android:src="@drawable/send"
+                    app:tint="@color/white" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_marginTop="660dp"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#0012BD"
+        android:layout_alignParentBottom="true"
+        app:itemTextAppearanceInactive="@style/BottomNavigationView.InactiveText"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_navigation_bar"
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="650dp"
+        tools:ignore="MissingConstraints" />
+
+</FrameLayout>

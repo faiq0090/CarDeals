@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/frame_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.smdproject.sellcar">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#0012BD"
+            android:orientation="horizontal"
+            tools:ignore="MissingConstraints">
+
+            <ImageView
+                android:id="@+id/arrow_back22"
+                android:layout_width="30dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@+id/Ali1"
+                android:contentDescription="Back Arrow"
+                android:src="@drawable/arrow_back" />
+
+            <TextView
+                android:id="@+id/textNotifications"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="35dp"
+                android:text="Sell Your Car"
+                android:textColor="@color/white"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:orientation="vertical">
+                <ImageButton
+                    android:id="@+id/button2"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/button_border"
+                    android:backgroundTint="#FFFFFF"
+                    app:srcCompat="@drawable/img4" />
+
+                <Spinner
+                    android:layout_marginTop="10dp"
+                    android:layout_width="300dp"
+                    android:id="@+id/carType"
+                    android:prompt="@string/select_Car_Company"
+                    android:layout_height="wrap_content">
+                </Spinner>
+                <Spinner
+                    android:layout_width="300dp"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/carModel"
+                    android:prompt="@string/select_Car_Model"
+                    android:layout_height="wrap_content">
+                </Spinner>
+                <Spinner
+                    android:layout_width="300dp"
+                    android:id="@+id/city"
+                    android:layout_marginTop="10dp"
+                    android:prompt="@string/select_city_hint"
+                    android:layout_height="wrap_content">
+                </Spinner>
+
+                <Spinner
+                    android:layout_width="300dp"
+                    android:id="@+id/model"
+                    android:layout_marginTop="10dp"
+                    android:prompt="@string/select_model_hint"
+                    android:layout_height="wrap_content">
+                </Spinner>
+
+                <Spinner
+                    android:layout_width="300dp"
+                    android:id="@+id/registered"
+                    android:layout_marginTop="10dp"
+                    android:prompt="@string/select_city_hint"
+                    android:layout_height="wrap_content">
+                </Spinner>
+
+                <Spinner
+                    android:layout_width="300dp"
+                    android:id="@+id/color"
+                    android:layout_marginTop="10dp"
+                    android:prompt="@string/select_color_hint"
+                    android:layout_height="wrap_content">
+                </Spinner>
+                <Spinner
+                    android:layout_width="300dp"
+                    android:id="@+id/FuelType"
+                    android:layout_marginTop="10dp"
+                    android:prompt="@string/select_color_hint"
+                    android:layout_height="wrap_content">
+                </Spinner>
+                <Spinner
+                    android:layout_width="300dp"
+                    android:id="@+id/BodyType"
+                    android:layout_marginTop="10dp"
+                    android:prompt="@string/select_color_hint"
+                    android:layout_height="wrap_content">
+                </Spinner>
+                <Spinner
+                    android:layout_width="300dp"
+                    android:id="@+id/TransmissionType"
+                    android:layout_marginTop="10dp"
+                    android:prompt="@string/select_color_hint"
+                    android:layout_height="wrap_content">
+                </Spinner>
+
+                <TextView
+                    android:id="@+id/Tag6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Engine Capacity(CC)"
+                    android:textColor="#000000"
+                    android:textSize="20sp">
+                </TextView>
+
+                <EditText
+                    android:id="@+id/EngineCapacity"
+                    android:layout_width="300dp"
+                    android:textSize="15dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:hint="Specify Engine Capacity">
+                </EditText>
+
+                <TextView
+                    android:id="@+id/Tag5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="KMs Driven"
+                    android:textColor="#000000"
+                    android:textSize="20sp">
+                </TextView>
+
+                <EditText
+                    android:id="@+id/km"
+                    android:layout_width="300dp"
+                    android:textSize="15dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:hint="Specify KMs Driven">
+                </EditText>
+
+                <TextView
+                    android:id="@+id/Tag9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Price (PKR)"
+                    android:textColor="#000000"
+                    android:textSize="20sp">
+
+                </TextView>
+
+                <EditText
+                    android:id="@+id/price"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:hint="Set a price"
+                    android:textSize="15dp">
+                </EditText>
+
+                <TextView
+                    android:id="@+id/Tag4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Description"
+                    android:textColor="#000000"
+                    android:textSize="20sp">
+
+                </TextView>
+
+                <EditText
+                    android:id="@+id/desc"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/white"
+                    android:textSize="15dp"
+                    android:hint="For example: Alloy rims, First Owner">
+                </EditText>
+
+                <TextView
+                    android:id="@+id/Tag7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Address"
+                    android:textColor="#000000"
+                    android:textSize="20sp">
+
+                </TextView>
+
+                <EditText
+                    android:id="@+id/Address"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/white"
+                    android:textSize="15dp"
+                    android:hint="Please Enter your Current Address">
+                </EditText>
+
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="100dp"
+                    android:background="@drawable/button_border"
+                    android:backgroundTint="#FFFFFF"
+                    android:text="Post Ad"
+                    android:textColor="#0012BD" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            >
+
+
+        </LinearLayout>
+    </LinearLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_marginTop="660dp"
+        android:background="#0012BD"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_navigation_bar"
+        />
+
+</FrameLayout>

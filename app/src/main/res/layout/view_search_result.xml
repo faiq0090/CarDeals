@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/resultpage"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="240dp">
+
+        <ImageView
+            android:id="@+id/arrow_back12"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="00dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="Back Arrow"
+            android:src="@drawable/arrow_back"
+            app:tint="#000000" />
+
+        <ImageView
+            android:id="@+id/CarImg"
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/img" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="490dp">
+
+        <TextView
+            android:id="@+id/CarName"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Honda Civic 1.8 i-VTEC CVT"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_below="@id/CarName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:text="PKR 42.75 lacs"
+            android:textColor="@color/black"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            />
+
+        <RelativeLayout
+            android:layout_below="@id/price"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/LocationIcon2"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:contentDescription="LocationIcon"
+                android:src="@drawable/location" />
+
+            <TextView
+                android:id="@+id/locationtext1"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/LocationIcon2"
+                android:layout_marginLeft="5dp"
+                android:text="DHA RAYA, Lahore"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/icons"
+            android:layout_marginTop="40dp"
+            android:layout_below="@id/price"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/calendarinfo"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/CalendarIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="0dp"
+                    android:contentDescription="CalendarIcon"
+                    android:src="@drawable/calendar_symbol_svgrepo_com" />
+                <TextView
+                    android:id="@+id/modeltext"
+                    android:layout_below="@id/CalendarIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginLeft="28dp"
+                    android:text="2017"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/mileageinfo"
+                android:layout_toRightOf="@id/calendarinfo"
+                android:layout_width="90dp"
+                android:layout_height="60dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/MileageIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="0dp"
+                    android:contentDescription="CalendarIcon"
+                    android:src="@drawable/mileage" />
+                <TextView
+                    android:id="@+id/mileagetext"
+                    android:layout_below="@id/MileageIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="110,000km"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/typeinfo"
+                android:layout_toRightOf="@id/mileageinfo"
+                android:layout_width="90dp"
+                android:layout_height="60dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/FuelTypeIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="0dp"
+                    android:contentDescription="CalendarIcon"
+                    android:src="@drawable/gas_station_icon" />
+                <TextView
+                    android:id="@+id/FuelTypetext"
+                    android:layout_below="@id/FuelTypeIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Petrol"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/transmissioninfo"
+                android:layout_toRightOf="@id/typeinfo"
+                android:layout_width="90dp"
+                android:layout_height="60dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/transmissionIcon"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="0dp"
+                    android:contentDescription="CalendarIcon"
+                    android:src="@drawable/automatic_transmission_icon" />
+                <TextView
+                    android:id="@+id/transmissiontext"
+                    android:layout_below="@id/transmissionIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Automatic"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/row1"
+        android:layout_below="@+id/icons"
+        android:layout_marginTop="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000000" />
+
+        <TextView
+            android:id="@+id/details1"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="Registered In:"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            />
+
+        <TextView
+            android:id="@+id/registeredtext"
+            android:layout_toRightOf="@id/details1"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="170dp"
+            android:text="Lahore"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            />
+    </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/row2"
+            android:layout_below="@+id/row1"
+            android:layout_marginTop="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+            <TextView
+                android:id="@+id/details2"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="Color:"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                />
+
+            <TextView
+                android:id="@+id/colortext"
+                android:layout_toRightOf="@id/details2"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="232dp"
+                android:text="Black"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/row3"
+            android:layout_below="@+id/row2"
+            android:layout_marginTop="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+            <TextView
+                android:id="@+id/details3"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="Engine Capacity:"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                />
+
+            <TextView
+                android:id="@+id/EngineCapacityText"
+                android:layout_toRightOf="@id/details3"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="147dp"
+                android:text="1800"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/row4"
+            android:layout_below="@+id/row3"
+            android:layout_marginTop="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+            <TextView
+                android:id="@+id/details4"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="Body Type:"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                />
+
+            <TextView
+                android:id="@+id/BodyTypeText"
+                android:layout_toRightOf="@id/details4"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="192dp"
+                android:text="Sedan"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/row5"
+            android:layout_below="@+id/row4"
+            android:layout_marginTop="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+            <TextView
+                android:id="@+id/details5"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="Ad ID:"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                />
+
+            <TextView
+                android:id="@+id/AdID"
+                android:layout_toRightOf="@id/details5"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="230dp"
+                android:text="2593939"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/row6"
+            android:layout_below="@+id/row5"
+            android:layout_marginTop="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000" />
+
+            <TextView
+                android:id="@+id/details6"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="Seller Comments"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/details62"
+                android:layout_toRightOf="@id/details6"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="155dp"
+                android:text="See All"
+                android:textColor="#2196F3"
+                android:textSize="16dp"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/row7"
+            android:layout_below="@+id/row6"
+            android:layout_marginTop="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/Callbtn"
+                android:layout_width="160dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="20dp"
+                android:backgroundTint="#0012BD"
+                android:textColor="@color/white"
+                android:drawableLeft="@drawable/call"
+                android:text="Call Seller" />
+
+            <Button
+                android:id="@+id/Messagebtn"
+                android:layout_toRightOf="@id/Callbtn"
+                android:layout_width="160dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="20dp"
+                android:backgroundTint="#0012BD"
+                android:textColor="@color/white"
+                android:drawableLeft="@drawable/chat"
+                android:text="Message Seller" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
