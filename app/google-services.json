@@ -1,13 +1,14 @@
 {
   "project_info": {
-    "project_number": "731911926089",
-    "project_id": "smd-project-f1708",
-    "storage_bucket": "smd-project-f1708.firebasestorage.app"
+    "project_number": "272114882534",
+    "firebase_url": "https://smdproject-77b20-default-rtdb.firebaseio.com",
+    "project_id": "smdproject-77b20",
+    "storage_bucket": "smdproject-77b20.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:731911926089:android:186a4db239a30b39fbaa98",
+        "mobilesdk_app_id": "1:272114882534:android:8662bac7667b68f7c76827",
         "android_client_info": {
           "package_name": "com.example.smdproject"
         }
@@ -15,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyC0LCb6ha4yyt62vCnw1uTiwDBQc4mPgE4"
+          "current_key": "AIzaSyDxjFmPNcTOYORlbNSsN5gLW8EYTBrOxSM"
         }
       ],
       "services": {
