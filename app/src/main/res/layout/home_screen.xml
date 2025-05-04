@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,702 +8,640 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:background="?android:attr/colorBackground"
-        android:orientation="vertical"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layout_marginBottom="80dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:background="#0012BD"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="50dp">
-
-                <Button
-                    android:id="@+id/btn1"
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="0dp"
-                    android:backgroundTint="@color/white"
-                    android:text="Used Cars"
-                    android:textSize="10dp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"/>
-
-                <Button
-                    android:id="@+id/btn2"
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_toRightOf="@id/btn1"
-                    android:backgroundTint="@color/white"
-                    android:text="New Cars"
-                    android:textColor="@color/black"
-                    android:textSize="10dp"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/btn3"
-                    android:layout_toRightOf="@id/btn2"
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="0dp"
-                    android:backgroundTint="@color/white"
-                    android:text="Bikes"
-                    android:textStyle="bold"
-                    android:textSize="9dp"
-                    android:textColor="@color/black" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="50dp">
-
-                <androidx.appcompat.widget.SearchView
-                    android:id="@+id/searchview1"
-                    android:layout_marginLeft="20dp"
-                    android:layout_width="235dp"
-                    android:queryHint="Search Cars"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    />
-                <RelativeLayout
-                    android:layout_width="120dp"
-                    android:layout_height="48dp"
-                    android:background="@color/white"
-                    android:layout_toRightOf="@+id/searchview1"
-                    android:orientation="horizontal">
-
-                    <View
-                        android:layout_marginTop="10dp"
-                        android:layout_width="2dp"
-                        android:layout_height="30dp"
-                        android:background="#000000" />
-                    <ImageView
-                        android:id="@+id/LocationIcon"
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:layout_marginStart="05dp"
-                        android:layout_marginTop="11dp"
-                        android:contentDescription="Location Icon"
-                        android:src="@drawable/location" />
-
-                    <TextView
-                        android:layout_width="70dp"
-                        android:layout_height="50dp"
-                        android:layout_weight="1"
-                        android:layout_marginStart="40dp"
-                        android:layout_marginTop="15dp"
-                        android:clickable="true"
-                        android:text="All Cities"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        />
-
-                </RelativeLayout>
-            </RelativeLayout>
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_marginTop="0dp"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
             android:background="?android:attr/colorBackground"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/text1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:text="Browse Cars"
-                android:textColor="?android:attr/textColorPrimary"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-
-            <HorizontalScrollView
-                android:id="@+id/scrollbtns"
-                android:layout_below="@id/text1"
-                android:layout_width="match_parent"
-                android:layout_height="50dp">
-
-                <RelativeLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp">
-
-                    <Button
-                        android:id="@+id/Categorybtn"
-                        android:layout_width="100dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="05dp"
-                        android:layout_marginTop="0dp"
-                        android:backgroundTint="#0072AB"
-                        android:text="Category"
-                        android:textSize="10dp"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"/>
-
-                    <Button
-                        android:id="@+id/Budgetbtn"
-                        android:layout_width="100dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="14dp"
-                        android:layout_marginTop="0dp"
-                        android:layout_toRightOf="@id/Categorybtn"
-                        android:backgroundTint="#0072AB"
-                        android:text="Budget"
-                        android:textColor="@color/white"
-                        android:textSize="10dp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:id="@+id/Brandbtn"
-                        android:layout_toRightOf="@id/Budgetbtn"
-                        android:layout_width="100dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="0dp"
-                        android:backgroundTint="#0072AB"
-                        android:text="Brand"
-                        android:textStyle="bold"
-                        android:textSize="9dp"
-                        android:textColor="@color/white" />
-
-                    <Button
-                        android:id="@+id/Typebtn"
-                        android:layout_toRightOf="@id/Brandbtn"
-                        android:layout_width="100dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="0dp"
-                        android:backgroundTint="#0072AB"
-                        android:text="Type"
-                        android:textStyle="bold"
-                        android:textSize="10dp"
-                        android:textColor="@color/white" />
-                </RelativeLayout>
-            </HorizontalScrollView>
-            <RelativeLayout
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="12dp"
-                android:layout_below="@+id/scrollbtns"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:orientation="horizontal">
-                <!-- First row -->
-                <RelativeLayout
-                    android:id="@+id/firstRow"
-                    android:layout_width="match_parent"
-                    android:layout_height="90dp">
-
-                    <!-- First column -->
-                    <RelativeLayout
-                        android:id="@+id/firstColumn"
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:background="#D9D9D9">
-
-                        <ImageView
-                            android:id="@+id/AutomaticCars"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginStart="05dp"
-                            android:layout_marginTop="5dp"
-                            android:contentDescription="AutomaticCars"
-                            android:src="@drawable/automatic_transmission_icon" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/AutomaticCars"
-                            android:layout_marginTop="5dp"
-                            android:layout_centerHorizontal="true"
-                            android:text="Automatic"
-                            android:textSize="14sp"
-                            android:textColor="@color/black" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/AutomaticCars"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="20dp"
-                            android:text="Cars"
-                            android:textSize="14sp"
-                            android:textColor="@color/black" />
-
-                    </RelativeLayout>
-
-                    <!-- Second column -->
-                    <RelativeLayout
-                        android:layout_marginLeft="10dp"
-                        android:id="@+id/secondColumn"
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_toEndOf="@id/firstColumn"
-                        android:layout_weight="1"
-                        android:background="#D9D9D9">
-                        <ImageView
-                            android:id="@+id/ManualCars"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginStart="0dp"
-                            android:layout_marginTop="5dp"
-                            android:contentDescription="ManualCars"
-                            android:src="@drawable/__speed_manual_transmission_icon" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/ManualCars"
-                            android:layout_marginTop="5dp"
-                            android:layout_centerHorizontal="true"
-                            android:text="Manual"
-                            android:textSize="14sp"
-                            android:textColor="@color/black" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/ManualCars"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="20dp"
-                            android:text="Cars"
-                            android:textSize="14sp"
-                            android:textColor="@color/black" />
-
-
-                    </RelativeLayout>
-
-                    <!-- Third column -->
-                    <RelativeLayout
-                        android:layout_marginLeft="10dp"
-                        android:id="@+id/thirdColumn"
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_toEndOf="@id/secondColumn"
-                        android:layout_weight="1"
-                        android:background="#D9D9D9">
-
-                        <ImageView
-                            android:id="@+id/ElectricCars"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginStart="0dp"
-                            android:layout_marginTop="5dp"
-                            android:contentDescription="ElectricCars"
-                            android:src="@drawable/electric_car_svgrepo_com" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/ElectricCars"
-                            android:layout_marginTop="5dp"
-                            android:layout_centerHorizontal="true"
-                            android:text="Electric"
-                            android:textSize="14sp"
-                            android:textColor="@color/black" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/ElectricCars"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="20dp"
-                            android:text="Cars"
-                            android:textSize="14sp"
-                            android:textColor="@color/black" />
-
-                    </RelativeLayout>
-
-                    <!-- Fourth column -->
-                    <RelativeLayout
-                        android:layout_marginLeft="10dp"
-                        android:id="@+id/fourthColumn"
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_toEndOf="@id/thirdColumn"
-                        android:layout_weight="1"
-                        android:background="#D9D9D9">
-
-                        <ImageView
-                            android:id="@+id/ImportedCars"
-                            android:layout_width="60dp"
-                            android:layout_height="45dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginStart="0dp"
-                            android:layout_marginTop="0dp"
-                            android:contentDescription="ImportedCars"
-                            android:src="@drawable/imported_car" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/ImportedCars"
-                            android:layout_marginTop="5dp"
-                            android:layout_centerHorizontal="true"
-                            android:text="Imported"
-                            android:textSize="14sp"
-                            android:textColor="@color/black" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/ImportedCars"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="20dp"
-                            android:text="Cars"
-                            android:textSize="14sp"
-                            android:textColor="@color/black" />
-
-                    </RelativeLayout>
-
-                </RelativeLayout>
-
-                <!-- Second row -->
-                <RelativeLayout
-                    android:layout_marginTop="15dp"
-                    android:id="@+id/secondRow"
-                    android:layout_width="match_parent"
-                    android:layout_height="90dp"
-                    android:layout_below="@id/firstRow">
-
-                    <!-- First column -->
-                    <RelativeLayout
-                        android:id="@+id/firstColumn2"
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_weight="1"
-                        android:background="#D9D9D9">
-
-                        <ImageView
-                            android:id="@+id/JapaneseCars"
-                            android:layout_width="45dp"
-                            android:layout_height="40dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginStart="05dp"
-                            android:layout_marginTop="5dp"
-                            android:contentDescription="JapaneseCars"
-                            android:src="@drawable/car_06" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/JapaneseCars"
-                            android:layout_marginTop="5dp"
-                            android:layout_centerHorizontal="true"
-                            android:text="Japanese"
-                            android:textSize="14sp"
-                            android:textColor="@color/black" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/JapaneseCars"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="20dp"
-                            android:text="Cars"
-                            android:textSize="14sp"
-                            android:textColor="@color/black" />
-
-                    </RelativeLayout>
-
-                    <!-- Second column -->
-                    <RelativeLayout
-                        android:layout_marginLeft="10dp"
-                        android:id="@+id/secondColumn2"
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_toEndOf="@id/firstColumn2"
-                        android:layout_weight="1"
-                        android:background="#D9D9D9">
-
-                        <ImageView
-                            android:id="@+id/cars660cc"
-                            android:layout_width="40dp"
-                            android:layout_height="45dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginStart="05dp"
-                            android:layout_marginTop="5dp"
-                            android:contentDescription="cars660cc"
-                            android:src="@drawable/_60cc_car" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/cars660cc"
-                            android:layout_marginTop="0dp"
-                            android:layout_centerHorizontal="true"
-                            android:text="660cc"
-                            android:textSize="14sp"
-                            android:textColor="@color/black" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/cars660cc"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="15dp"
-                            android:text="Cars"
-                            android:textSize="14sp"
-                            android:textColor="@color/black" />
-
-                    </RelativeLayout>
-
-                    <!-- Third column -->
-                    <RelativeLayout
-                        android:layout_marginLeft="10dp"
-                        android:id="@+id/thirdColumn2"
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_toEndOf="@id/secondColumn2"
-                        android:layout_weight="1"
-                        android:background="#D9D9D9">
-
-                        <ImageView
-                            android:id="@+id/cars1300cc"
-                            android:layout_width="60dp"
-                            android:layout_height="50dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginStart="05dp"
-                            android:layout_marginTop="0dp"
-                            android:contentDescription="cars1300cc"
-                            android:src="@drawable/sedan_car_icon" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/cars1300cc"
-                            android:layout_marginTop="0dp"
-                            android:layout_centerHorizontal="true"
-                            android:text="1300cc"
-                            android:textSize="14sp"
-                            android:textColor="@color/black" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/cars1300cc"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="15dp"
-                            android:text="Cars"
-                            android:textSize="14sp"
-                            android:textColor="@color/black" />
-
-                    </RelativeLayout>
-
-                    <!-- Fourth column -->
-                    <RelativeLayout
-                        android:layout_marginLeft="10dp"
-                        android:id="@+id/fourthColumn2"
-                        android:layout_width="80dp"
-                        android:orientation="horizontal"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_toEndOf="@id/thirdColumn2"
-                        android:layout_weight="1"
-                        android:background="#D9D9D9">
-
-                        <ImageView
-                            android:id="@+id/SportsCars"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginStart="05dp"
-                            android:layout_marginTop="5dp"
-                            android:contentDescription="SportsCars"
-                            android:src="@drawable/c63" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/SportsCars"
-                            android:layout_marginTop="5dp"
-                            android:layout_centerHorizontal="true"
-                            android:text="Sports"
-                            android:textSize="14sp"
-                            android:textColor="@color/black" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/SportsCars"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="20dp"
-                            android:text="Cars"
-                            android:textSize="14sp"
-                            android:textColor="@color/black" />
-
-                    </RelativeLayout>
-                </RelativeLayout>
-            </RelativeLayout>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_marginTop="0dp"
-            android:background="?android:attr/colorBackground"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="190dp">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/text2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="0dp"
-                android:text="Explore Services"
-                android:textColor="?android:attr/textColorPrimary"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+            <!-- Top Blue Header Section -->
             <LinearLayout
-                android:layout_marginTop="25dp"
-                android:layout_marginLeft="15dp"
-                android:layout_width="370dp"
-                android:layout_height="110dp"
-                android:background="@color/white"
-                android:orientation="horizontal">
-
-                <RelativeLayout
-                    android:layout_width="160dp"
-                    android:background="#D9D9D9"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp">
-
-                    <Button
-                        android:id="@+id/Insurancebtn"
-                        android:layout_width="match_parent"
-                        android:backgroundTint="#D9D9D9"
-                        android:layout_height="80dp"
-                        android:layout_marginEnd="0dp"
-                        android:textColor="#000000"
-                        android:gravity="center"
-                        android:paddingStart="16dp"
-                        android:paddingTop="35dp"
-                        android:paddingEnd="15dp"
-                        android:text="Insurance Information" />
-
-                    <ImageView
-                        android:id="@+id/InsuranceIcon1"
-                        android:layout_width="47dp"
-                        android:layout_height="44dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginLeft="40dp"
-                        android:contentDescription="Video Icon"
-                        android:paddingStart="0dp"
-                        android:src="@drawable/car_vehicle_insurance_icon" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="160dp"
-                    android:background="#D9D9D9"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="15dp">
-
-                    <Button
-                        android:id="@+id/Dealershipbtn"
-                        android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:layout_marginEnd="0dp"
-                        android:backgroundTint="#D9D9D9"
-                        android:textColor="#000000"
-                        android:gravity="center"
-                        android:paddingStart="16dp"
-                        android:paddingTop="35dp"
-                        android:paddingEnd="15dp"
-                        android:text="Dealer Directory" />
-
-                    <ImageView
-                        android:id="@+id/CarDealerIcon"
-                        android:layout_width="47dp"
-                        android:layout_height="44dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginStart="40dp"
-                        android:layout_marginEnd="160dp"
-                        android:contentDescription="Video Icon"
-                        android:paddingStart="0dp"
-                        android:src="@drawable/car_dealer_svgrepo_com" />
-                </RelativeLayout>
-            </LinearLayout>
-            <RelativeLayout
-                android:layout_marginTop="135dp"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:background="?android:attr/colorBackground"
-                android:orientation="horizontal">
+                android:layout_height="160dp"
+                android:background="#1A73E8"
+                android:orientation="vertical"
+                android:paddingHorizontal="16dp"
+                android:paddingTop="16dp">
+
+                <!-- Category Buttons Row -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <Button
+                            android:id="@+id/btn1"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:text="Used Cars"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="#1A73E8" />
+
+                        <Button
+                            android:id="@+id/btn2"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:text="New Cars"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="match_parent"
+                            android:background="#1A73E8" />
+
+                        <Button
+                            android:id="@+id/btn3"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:text="Bikes"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Search Bar with Location -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.SearchView
+                            android:id="@+id/searchview1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:queryHint="Search Cars"
+                            app:iconifiedByDefault="false" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="#E0E0E0" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="8dp">
+
+                            <ImageView
+                                android:id="@+id/LocationIcon"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:contentDescription="Location Icon"
+                                android:src="@drawable/location" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:text="All Cities"
+                                android:textColor="@color/black"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- Browse Cars Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
                 <TextView
-                    android:id="@+id/text3"
+                    android:id="@+id/text1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="0dp"
-                    android:text="Featured Cars"
+                    android:text="Browse Cars"
                     android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
+
+                <!-- First Row of Car Categories -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/carCategoriesRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="2" />
+
+                <!-- Grid Layout for Car Categories -->
+                <androidx.gridlayout.widget.GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:columnCount="4"
+                    app:rowCount="2"
+                    app:useDefaultMargins="true">
+
+                    <!-- First Row -->
+                    <!-- Automatic Cars -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="90dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="2dp"
+                        app:layout_columnWeight="1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:id="@+id/firstColumn"
+                            android:orientation="vertical"
+                            android:padding="8dp">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:contentDescription="Automatic Cars"
+                                android:src="@drawable/automatic_transmission_icon" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="Automatic"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Cars"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Manual Cars -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="90dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="2dp"
+                        app:layout_columnWeight="1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:id="@+id/secondColumn"
+                            android:orientation="vertical"
+                            android:padding="8dp">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:contentDescription="Manual Cars"
+                                android:src="@drawable/__speed_manual_transmission_icon" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="Manual"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Cars"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Electric Cars -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="90dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="2dp"
+                        app:layout_columnWeight="1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:id="@+id/thirdColumn"
+                            android:padding="8dp">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:contentDescription="Electric Cars"
+                                android:src="@drawable/electric_car_svgrepo_com" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="Electric"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Cars"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Imported Cars -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="90dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="2dp"
+                        app:layout_columnWeight="1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:id="@+id/fourthColumn"
+                            android:padding="8dp">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:contentDescription="Imported Cars"
+                                android:src="@drawable/imported_car" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="Imported"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Cars"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Second Row -->
+                    <!-- Japanese Cars -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="90dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="2dp"
+                        app:layout_columnWeight="1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:id="@+id/firstColumn2"
+                            android:orientation="vertical"
+                            android:padding="8dp">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:contentDescription="Japanese Cars"
+                                android:src="@drawable/car_06" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="Japanese"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Cars"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- 660cc Cars -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="90dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="2dp"
+                        app:layout_columnWeight="1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:id="@+id/secondColumn2"
+                            android:padding="8dp">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:contentDescription="660cc Cars"
+                                android:src="@drawable/_60cc_car" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="660cc"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Cars"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- 1300cc Cars -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="90dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="2dp"
+                        app:layout_columnWeight="1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:id="@+id/thirdColumn2"
+                            android:orientation="vertical"
+                            android:padding="8dp">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:contentDescription="1300cc Cars"
+                                android:src="@drawable/sedan_car_icon" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="1300cc"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Cars"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Sports Cars -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="90dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="2dp"
+                        app:layout_columnWeight="1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:id="@+id/fourthColumn2"
+                            android:padding="8dp">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:contentDescription="Sports Cars"
+                                android:src="@drawable/c63" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="Sports"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Cars"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </androidx.gridlayout.widget.GridLayout>
+            </LinearLayout>
+
+            <!-- Explore Services Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="16dp">
 
                 <TextView
-                    android:layout_toRightOf="@id/text3"
-                    android:layout_width="60dp"
-                    android:layout_height="50dp"
-                    android:layout_weight="1"
-                    android:layout_marginStart="180dp"
-                    android:layout_marginTop="05dp"
-                    android:clickable="true"
-                    android:text="See All"
-                    android:textColor="#2196F3"
-                    android:textSize="12sp"
+                    android:id="@+id/text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Explore Services"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
-            </RelativeLayout>
-        </RelativeLayout>
 
-    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <!-- Insurance Information Card -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="2dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:id="@+id/Insurancebtn"
+                            android:padding="8dp">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:contentDescription="Insurance Icon"
+                                android:src="@drawable/car_vehicle_insurance_icon" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="Insurance Information"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Dealer Directory Card -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="2dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:id="@+id/Dealershipbtn"
+                            android:padding="8dp">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:contentDescription="Dealer Icon"
+                                android:src="@drawable/car_dealer_svgrepo_com" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="Dealer Directory"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Featured Cars Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/text3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Featured Cars"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="See All"
+                        android:textColor="#1A73E8"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <!-- Placeholder for featured cars -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/featuredCarsRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
-        android:layout_marginTop="660dp"
-        android:background="#0012BD"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_alignParentBottom="true"
-        app:itemTextAppearanceInactive="@style/BottomNavigationView.InactiveText"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#1A73E8"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
         app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_navigation_bar"
-        />
+        app:itemActiveIndicatorStyle="@android:color/transparent"
+        app:menu="@menu/bottom_navigation_bar" />
 </FrameLayout>

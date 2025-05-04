@@ -19,14 +19,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
             // Handler to navigate to the main activity after the splash screen timeout
-            Handler().postDelayed({
-                // Start your main activity
-                val intent = Intent(this, LoginPage::class.java)
-                startActivity(intent)
-
-                // Close this activity
-                finish()
-            }, SPLASH_TIME_OUT)
+        val intent = Intent(this, LoginPage::class.java)
+        startActivity(intent)
 
         /*
         val loginbutton = findViewById<Button>(R.id.loginbutton)

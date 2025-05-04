@@ -9,7 +9,7 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:background="#0012BD"
+        android:background="#1A73E8"
         android:layout_width="match_parent"
         android:layout_height="120dp">
         <ImageView
@@ -28,7 +28,7 @@
             android:layout_marginLeft="70dp"
             android:layout_height="100dp"
             android:layout_marginTop="35dp"
-            android:background="#0012BD"
+            android:background="#1A73E8"
             android:text="Available Insurance"
             android:textColor="@color/white"
             android:textSize="30sp"

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -68,27 +69,27 @@ class HomeScreenActivity : AppCompatActivity() {
             intent.putExtra("Model", "2024")
             startActivity(intent)
         }
-        val firstColumn = findViewById<RelativeLayout>(R.id.firstColumn)
+        val firstColumn = findViewById<LinearLayout>(R.id.firstColumn)
         firstColumn.setOnClickListener {
             val intent = Intent(this, SearchResults::class.java)
             intent.putExtra("TRANSMISSION_TYPE", "automatic")
             startActivity(intent)
         }
-        val secondColumn = findViewById<RelativeLayout>(R.id.secondColumn)
+        val secondColumn = findViewById<LinearLayout>(R.id.secondColumn)
         secondColumn.setOnClickListener {
             val intent = Intent(this, SearchResults::class.java)
             intent.putExtra("TRANSMISSION_TYPE", "manual")
             startActivity(intent)
         }
 
-        val thirdColumn = findViewById<RelativeLayout>(R.id.thirdColumn)
+        val thirdColumn = findViewById<LinearLayout>(R.id.thirdColumn)
         thirdColumn.setOnClickListener {
             val intent = Intent(this, SearchResults::class.java)
             intent.putExtra("Fuel_TYPE", "Electric")
             startActivity(intent)
         }
 
-        val  fourthColumn = findViewById<RelativeLayout>(R.id. fourthColumn)
+        val  fourthColumn = findViewById<LinearLayout>(R.id.fourthColumn)
         fourthColumn.setOnClickListener {
             val intent = Intent(this, SearchResults::class.java)
             intent.putExtra("Body_TYPE", "Imported")
@@ -96,35 +97,35 @@ class HomeScreenActivity : AppCompatActivity() {
         }
 
 
-        val  firstColumn2 = findViewById<RelativeLayout>(R.id. firstColumn2)
+        val  firstColumn2 = findViewById<LinearLayout>(R.id.firstColumn2)
         firstColumn2.setOnClickListener {
             val intent = Intent(this, SearchResults::class.java)
             intent.putExtra("Body_TYPE", "Japanese")
             startActivity(intent)
         }
-        val  secondColumn2 = findViewById<RelativeLayout>(R.id. secondColumn2)
+        val  secondColumn2 = findViewById<LinearLayout>(R.id.secondColumn2)
         secondColumn2.setOnClickListener {
             val intent = Intent(this, SearchResults::class.java)
             intent.putExtra("Engine_Capacity", "660")
             startActivity(intent)
         }
-        val  thirdColumn2 = findViewById<RelativeLayout>(R.id.thirdColumn2)
+        val  thirdColumn2 = findViewById<LinearLayout>(R.id.thirdColumn2)
         thirdColumn2.setOnClickListener {
             val intent = Intent(this, SearchResults::class.java)
             intent.putExtra("Engine_Capacity", "1300")
             startActivity(intent)
         }
-        val  fourthColumn2 = findViewById<RelativeLayout>(R.id.fourthColumn2)
+        val  fourthColumn2 = findViewById<LinearLayout>(R.id.fourthColumn2)
         fourthColumn2.setOnClickListener {
             val intent = Intent(this, SearchResults::class.java)
             intent.putExtra("Body_TYPE", "Sports")
             startActivity(intent)
         }
-        val Insurancepage = findViewById<Button>(R.id.Insurancebtn)
+        val Insurancepage = findViewById<LinearLayout>(R.id.Insurancebtn)
         Insurancepage.setOnClickListener {
             startActivity(Intent(this, InsuranceHome::class.java))
         }
-        val Dealershipbtn = findViewById<Button>(R.id.Dealershipbtn)
+        val Dealershipbtn = findViewById<LinearLayout>(R.id.Dealershipbtn)
         Dealershipbtn.setOnClickListener {
             startActivity(Intent(this, DealershipHome::class.java))
         }
