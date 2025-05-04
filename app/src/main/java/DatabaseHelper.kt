@@ -18,8 +18,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         private const val KEY_ID = "id"
         private const val KEY_NAME = "name"
         private const val KEY_PHONE = "phone"
-        //private const val KEY_COUNTRY = "country"
-        //private const val KEY_CITY = "city"
+
         private const val KEY_EMAIL = "email"
         private const val KEY_PASSWORD = "password"
         private const val KEY_CITY = "city"

@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import sellcar
 
 class HomeScreenActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView
