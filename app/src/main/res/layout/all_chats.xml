@@ -244,19 +244,7 @@
 
 
     </LinearLayout>
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_marginTop="660dp"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_alignParentBottom="true"
-        android:background="#0012BD"
-        app:itemTextAppearanceInactive="@style/BottomNavigationView.InactiveText"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_navigation_bar"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="650dp" />
+
 </FrameLayout>
 
 

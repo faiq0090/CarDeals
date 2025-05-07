@@ -74,7 +74,7 @@ class LoginPage : AppCompatActivity() {
             { response ->
                 try {
                     val userId = response.getString("user_id")
-                    saveUserId(userId)
+                    saveUserSession(userId)
                     startActivity(Intent(this, HomeScreenActivity::class.java))
                     finish()
                 } catch (e: Exception) {
@@ -91,8 +91,12 @@ class LoginPage : AppCompatActivity() {
         queue.add(request)
     }
 
-    private fun saveUserId(id: String) {
+    private fun saveUserSession(id: String) {
         val sharedPref = getSharedPreferences("UserSession", Context.MODE_PRIVATE)
-        sharedPref.edit().putString("user_id", id).apply()
+        sharedPref.edit()
+            .putBoolean("is_logged_in", true)
+            .putString("user_id", id)
+            .apply()
     }
+
 }
