@@ -1,176 +1,233 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
 
-    <LinearLayout
+    <!-- Modern top app bar -->
+    <RelativeLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="#0012BD"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#1A73E8"
+        android:elevation="4dp">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back"
+            android:padding="12dp"
+            android:src="@drawable/arrow_back"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/btnBack"
+            android:text="Find Cars"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <!-- Search card container -->
+    <LinearLayout
+        android:id="@+id/searchContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appBarLayout"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="-8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#f8f8f8"
+        android:elevation="4dp"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:iconifiedByDefault="false"
+            android:queryHint="Search Cars" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#383838" />
+
+        <LinearLayout
+            android:id="@+id/locationSelector"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp">
+
+            <ImageView
+                android:id="@+id/locationIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="Location"
+                android:src="@drawable/location"
+                app:tint="#000000" />
+
+            <TextView
+                android:id="@+id/tvLocation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:text="All Cities"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_arrow_drop"
+                android:contentDescription="Expand"
+                app:tint="@color/black" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Sort and Filter Section -->
+    <LinearLayout
+        android:id="@+id/filterSortLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/searchContainer"
         android:orientation="vertical">
 
         <RelativeLayout
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="48dp"
+            android:paddingHorizontal="16dp">
 
-            <ImageView
-                android:id="@+id/arrow_back12"
-                android:layout_width="30dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:contentDescription="Back Arrow"
-                android:src="@drawable/arrow_back" />
-
-            <SearchView
-                android:id="@+id/searchview1"
-                android:layout_marginLeft="50dp"
-                android:layout_width="195dp"
-                android:queryHint="Search Cars"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                />
-            <RelativeLayout
-                android:layout_width="120dp"
-                android:layout_height="48dp"
-                android:background="@color/white"
-                android:layout_toRightOf="@+id/searchview1"
+            <LinearLayout
+                android:id="@+id/sortLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <View
-                    android:layout_marginTop="10dp"
-                    android:layout_width="2dp"
-                    android:layout_height="30dp"
-                    android:background="#000000" />
                 <ImageView
-                    android:id="@+id/LocationIcon"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="05dp"
-                    android:layout_marginTop="11dp"
-                    android:contentDescription="Location Icon"
-                    android:src="@drawable/location" />
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="Sort"
+                    android:src="@drawable/sort"
+                    app:tint="#000000" />
 
                 <TextView
-                    android:layout_width="70dp"
-                    android:layout_height="50dp"
-                    android:layout_weight="1"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="15dp"
-                    android:clickable="true"
-                    android:text="All Cities"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="Sort"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
-            </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/filterLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="Filter"
+                    android:src="@drawable/filter_6551"
+                    app:tint="#000000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="Filter"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+            </LinearLayout>
         </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#383838" />
     </LinearLayout>
 
+    <!-- Results Count -->
     <RelativeLayout
-        android:layout_marginTop="5dp"
+        android:id="@+id/resultsLayout"
         android:layout_width="match_parent"
-        android:layout_height="32dp"
-        android:orientation="horizontal">
-        <TextView
-            android:id="@+id/text3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="0dp"
-            android:text="Sort"
-            android:textColor="@color/black"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/SortIcon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_toRightOf="@id/text3"
-            android:layout_marginStart="0dp"
-            android:layout_marginBottom="2dp"
-            android:contentDescription="SortIcon"
-            android:src="@drawable/sort" />
-
+        android:layout_height="48dp"
+        android:layout_below="@id/filterSortLayout"
+        android:paddingHorizontal="16dp"
+        android:gravity="center_vertical">
 
         <TextView
-            android:id="@+id/text4"
-            android:layout_toRightOf="@id/text3"
+            android:id="@+id/tvResultsCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="260dp"
-            android:layout_marginTop="0dp"
-            android:text=" Filter"
-            android:textColor="@color/black"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-        <ImageView
-            android:id="@+id/FilterIcon"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_toRightOf="@id/text4"
-            android:layout_marginStart="05dp"
-            android:layout_marginTop="0dp"
-            android:contentDescription="FilterIcon"
-            android:src="@drawable/filter_6551" />
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#000000" />
-    <RelativeLayout
-        android:layout_marginTop="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="32dp"
-        android:orientation="horizontal">
+            android:layout_marginStart="4dp"
+            android:text="1"
+            android:textColor="#000000"
+            android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/numtext"
+            android:id="@+id/tvResultsText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="0dp"
-            android:text="12"
-            android:textColor="@color/black"
-            android:textSize="18dp"
-             />
+            android:layout_toEndOf="@id/tvResultsCount"
+            android:layout_marginStart="4dp"
+            android:text="results for:"
+            android:textColor="#000000"
+            android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/text5"
-            android:layout_toRightOf="@id/numtext"
+            android:id="@+id/tvSearchTerm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="0dp"
-            android:text="results for: "
-            android:textColor="@color/black"
-            android:textSize="18dp"
-            />
-
-        <TextView
-            android:id="@+id/Searchtext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/text5"
+            android:layout_toEndOf="@id/tvResultsText"
             android:text="civic"
-            android:textColor="@color/black"
-            android:textSize="18dp"
+            android:textColor="#000000"
+            android:textSize="16sp"
             android:textStyle="bold" />
     </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#000000" />
 
+    <View
+        android:id="@+id/dividerBeforeList"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@id/resultsLayout"
+        android:background="#383838" />
+
+    <!-- Car Listings -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/dividerBeforeList"
+        android:clipToPadding="false"
+        android:paddingVertical="8dp" />
 
-</LinearLayout>
+
+</RelativeLayout>

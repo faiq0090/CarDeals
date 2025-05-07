@@ -1,64 +1,100 @@
-import android.content.Intent
+package com.example.smdproject
+
+import android.content.Context
+import android.graphics.BitmapFactory
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.smdproject.R
-import com.example.smdproject.ViewSearchResult
+import java.text.NumberFormat
+import java.util.Locale
 
-class CarAdapter(private val carList: MutableList<Car>) :
-    RecyclerView.Adapter<CarAdapter.ViewHolder>() {
+// Car data class for the adapter
+data class Car(
+    val id: Int,
+    val userId: Int,
+    val carType: String,
+    val carModel: String,
+    val city: String,
+    val model: String,
+    val registered: String,
+    val color: String,
+    val fuelType: String,
+    val bodyType: String,
+    val transmissionType: String,
+    val engineCapacity: String,
+    val kmDriven: String,
+    val price: String,
+    val description: String,
+    val address: String,
+    val imageBase64: String
+)
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val carNameTextView: TextView = itemView.findViewById(R.id.CarName)
-        val carPriceTextView: TextView = itemView.findViewById(R.id.Price)
-        val carModelYearTextView: TextView = itemView.findViewById(R.id.modelYeartext)
-        val carMileageTextView: TextView = itemView.findViewById(R.id.mileagetext)
-        val carFuelTypeTextView: TextView = itemView.findViewById(R.id.FuelTypetext)
-        val carLocationTextView: TextView = itemView.findViewById(R.id.locationtext)
-        val carResultLayout: View = itemView.findViewById(R.id.CarResult)
-        val carImgView: ImageView = itemView.findViewById(R.id.Carimg)
+class CarAdapter(
+    private val context: Context,
+    private val carList: List<Car>,
+    private val onItemClick: (Car) -> Unit
+) : RecyclerView.Adapter<CarAdapter.CarViewHolder>() {
 
-
-        init {
-            carResultLayout.setOnClickListener {
-                val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    val context = itemView.context
-                    val intent = Intent(context, ViewSearchResult::class.java)
-                    intent.putExtra("car", carList[position])
-                    context.startActivity(intent)
-                }
-            }
-        }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarViewHolder {
+        val view = LayoutInflater.from(context).inflate(R.layout.car_item, parent, false)
+        return CarViewHolder(view)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.car_item, parent, false)
-        return ViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CarViewHolder, position: Int) {
         val car = carList[position]
-        holder.carNameTextView.text = "${car.carCompany} ${car.carModel}"
-        holder.carPriceTextView.text = car.price
-        holder.carModelYearTextView.text = car.model
-        holder.carMileageTextView.text = car.km
-        holder.carFuelTypeTextView.text = car.fuelType
-        holder.carLocationTextView.text = car.city
-        // Load image using Glide library
-        Glide.with(holder.itemView)
-            .load(car.imageUrl) // Load image from URL
-            .placeholder(R.drawable.img) // Placeholder image
-            .error(R.drawable.img) // Error image
-            .into(holder.carImgView) // ImageView to load the image
+        holder.bind(car)
+        holder.itemView.setOnClickListener { onItemClick(car) }
     }
 
-    override fun getItemCount(): Int {
-        return carList.size
+    override fun getItemCount(): Int = carList.size
+
+    inner class CarViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val ivCarImage: ImageView = itemView.findViewById(R.id.ivCarImage)
+        private val tvCarTitle: TextView = itemView.findViewById(R.id.tvCarTitle)
+        private val tvCarPrice: TextView = itemView.findViewById(R.id.tvCarPrice)
+        private val tvCarCity: TextView = itemView.findViewById(R.id.tvCarCity)
+        private val tvCarYear: TextView = itemView.findViewById(R.id.tvCarYear)
+        private val tvCarKm: TextView = itemView.findViewById(R.id.tvCarKm)
+        private val tvCarFuel: TextView = itemView.findViewById(R.id.tvCarFuel)
+        private val tvCarTransmission: TextView = itemView.findViewById(R.id.tvCarTransmission)
+
+        fun bind(car: Car) {
+            // Set car image
+            if (car.imageBase64.isNotEmpty()) {
+                try {
+                    val decodedBytes = Base64.decode(car.imageBase64, Base64.DEFAULT)
+                    val bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+                    ivCarImage.setImageBitmap(bitmap)
+                } catch (e: Exception) {
+                    ivCarImage.setImageResource(R.drawable.car_06)
+                }
+            } else {
+                ivCarImage.setImageResource(R.drawable.car_06)
+            }
+
+            // Format car title (Make + Model)
+            tvCarTitle.text = "${car.carModel} ${car.carType}"
+
+            // Format price with currency
+            try {
+                val priceValue = car.price.toLong()
+                val formattedPrice = NumberFormat.getCurrencyInstance(Locale("en", "PK"))
+                    .format(priceValue)
+                tvCarPrice.text = formattedPrice
+            } catch (e: Exception) {
+                tvCarPrice.text = "Rs. ${car.price}"
+            }
+
+            // Set other car details
+            tvCarCity.text = car.city
+            tvCarYear.text = car.model
+            tvCarKm.text = "${car.kmDriven} km"
+            tvCarFuel.text = car.fuelType
+            tvCarTransmission.text = car.transmissionType
+        }
     }
 }

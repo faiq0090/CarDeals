@@ -137,4 +137,9 @@ class CarDatabaseHelper(context: Context) : SQLiteOpenHelper(context, "CarAds.db
         db.close()
         return carList
     }
+    fun clearAllCarAds() {
+        val db = writableDatabase
+        db.delete("car_ads", null, null)
+        db.close()
+    }
 }

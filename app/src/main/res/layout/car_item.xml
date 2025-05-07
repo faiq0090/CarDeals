@@ -1,162 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="200dp">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/card_background"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    android:elevation="2dp">
+
     <RelativeLayout
-        android:id="@+id/CarResult"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:orientation="horizontal"
-        android:background="#F5F0E5"
-        android:clickable="true"
-        android:layout_width="350dp"
-        android:layout_height="160dp">
+        android:layout_width="match_parent"
+        android:layout_height="180dp">
 
-        <RelativeLayout
-            android:id="@+id/imgcontainer"
-            android:layout_centerVertical="true"
-            android:layout_width="150dp"
-            android:layout_height="100dp">
+        <ImageView
+            android:id="@+id/ivCarImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/car_06"
+            android:contentDescription="Car Image" />
 
-            <ImageView
-                android:id="@+id/Carimg"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/img" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/info1"
-            android:layout_toRightOf="@id/imgcontainer"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical"
-            android:background="#D9D9D9"
-            android:layout_width="190dp"
-            android:layout_height="140dp">
-
-            <TextView
-                android:id="@+id/CarName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="20dp"
-                android:text="Honda Civic 1.8 i-VTEC CVT"
-                android:textColor="@color/black"
-                android:textSize="18dp"
-                />
-
-            <TextView
-                android:id="@+id/Price"
-                android:layout_below="@id/CarName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:layout_marginLeft="20dp"
-                android:text="PKR 42.75 lacs"
-                android:textColor="@color/black"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                />
-
-            <RelativeLayout
-                android:id="@+id/infoup2"
-                android:layout_below="@id/Price"
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="32dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/CalendarIcon"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_marginStart="05dp"
-                    android:layout_marginTop="0dp"
-                    android:contentDescription="CalendarIcon"
-                    android:src="@drawable/calendar_symbol_svgrepo_com" />
-                <TextView
-                    android:id="@+id/modelYeartext"
-                    android:layout_toRightOf="@id/CalendarIcon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginLeft="5dp"
-                    android:text="2017"
-                    android:textColor="@color/black"
-                    android:textSize="16dp"
-                    />
-                <ImageView
-                    android:id="@+id/MileageIcon"
-                    android:layout_toRightOf="@id/modelYeartext"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="0dp"
-                    android:contentDescription="MileageIcon"
-                    android:src="@drawable/mileage" />
-
-                <TextView
-                    android:id="@+id/mileagetext"
-                    android:layout_toRightOf="@id/MileageIcon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginLeft="2dp"
-                    android:text="110,000km"
-                    android:textColor="@color/black"
-                    android:textSize="14dp"
-                    />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_below="@id/infoup2"
-                android:layout_marginTop="0dp"
-                android:layout_width="match_parent"
-                android:layout_height="32dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/FuelIcon"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_marginStart="05dp"
-                    android:layout_marginTop="0dp"
-                    android:contentDescription="FuelIcon"
-                    android:src="@drawable/gas_station_icon" />
-                <TextView
-                    android:id="@+id/FuelTypetext"
-                    android:layout_toRightOf="@id/FuelIcon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginLeft="5dp"
-                    android:text="Petrol"
-                    android:textColor="@color/black"
-                    android:textSize="16dp"
-                    />
-                <ImageView
-                    android:id="@+id/LocationIcon2"
-                    android:layout_toRightOf="@id/FuelTypetext"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="0dp"
-                    android:contentDescription="LocationIcon"
-                    android:src="@drawable/location" />
-
-                <TextView
-                    android:id="@+id/locationtext"
-                    android:layout_toRightOf="@id/LocationIcon2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginLeft="2dp"
-                    android:text="Lahore"
-                    android:textColor="@color/black"
-                    android:textSize="14dp"
-                    />
-            </RelativeLayout>
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/tvCarPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:background="#B2000000"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="6dp"
+            android:text="Rs. 2,500,000" />
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <TextView
+            android:id="@+id/tvCarTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Honda Civic"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvCarCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Islamabad"
+            android:textColor="#000"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/calendar_symbol_svgrepo_com"
+                    app:tint="#000" />
+
+                <TextView
+                    android:id="@+id/tvCarYear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2021"
+                    android:textColor="#000"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/_60cc_car"
+                    app:tint="#000" />
+
+                <TextView
+                    android:id="@+id/tvCarKm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="25,000 km"
+                    android:textColor="#000"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/gas_station_icon"
+                    app:tint="#000" />
+
+                <TextView
+                    android:id="@+id/tvCarFuel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Petrol"
+                    android:textColor="#000"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/automatic_transmission_icon"
+                    app:tint="#000"/>
+
+                <TextView
+                    android:id="@+id/tvCarTransmission"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Automatic"
+                    android:textColor="#000"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

@@ -37,7 +37,7 @@ class HomeScreenActivity : AppCompatActivity() {
                     if (response.getString("status") == "success") {
                         val adsArray = response.getJSONArray("ads")
                         val dbHelper = CarDatabaseHelper(this)
-
+                        dbHelper.clearAllCarAds()
                         for (i in 0 until adsArray.length()) {
                             val adObject = adsArray.getJSONObject(i)
                             val values = ContentValues().apply {

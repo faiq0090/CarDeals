@@ -113,18 +113,21 @@ class sellcar : Fragment() {
             val imageUri: Uri? = data.data
             imageUri?.let {
                 imageButton.setImageURI(it)
-                val bitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+
+                val originalBitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                     val source = ImageDecoder.createSource(requireActivity().contentResolver, it)
                     ImageDecoder.decodeBitmap(source)
                 } else {
                     MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, it)
                 }
 
-                selectedImageBase64 = encodeImageToBase64(bitmap)
-                Log.d(TAG, "Image converted to Base64")
+                val resizedBitmap = Bitmap.createScaledBitmap(originalBitmap, 500, 500, true)
+                selectedImageBase64 = encodeImageToBase64(resizedBitmap)
+                Log.d(TAG, "Image resized and converted to Base64")
             }
         }
     }
+
 
     private fun encodeImageToBase64(bitmap: Bitmap): String {
         val outputStream = ByteArrayOutputStream()
