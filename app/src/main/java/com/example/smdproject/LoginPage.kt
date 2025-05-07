@@ -10,44 +10,18 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
+import com.example.smdproject.com.example.smdproject.apiconfig.ApiConf
+import org.json.JSONObject
 
 class LoginPage : AppCompatActivity() {
-    private lateinit var mAuth: FirebaseAuth
-    private lateinit var dbHelper: DatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // Initialize Firebase Authentication
-        mAuth = FirebaseAuth.getInstance()
-        dbHelper = DatabaseHelper(this)
-
-        // Check if user is already logged in
-        if (mAuth.currentUser != null) {
-            // User is already logged in, redirect to HomeScreenActivity
-            startActivity(Intent(this, HomeScreenActivity::class.java))
-            finish()
-            return
-        }
-
-        // User is not logged in, show login screen
         setContentView(R.layout.login_page)
 
-        try {
-            // Initialize Firebase persistence if not already enabled
-            FirebaseDatabase.getInstance().setPersistenceEnabled(true)
-        } catch (e: Exception) {
-            Log.e("Firebase", "Firebase persistence already enabled")
-        }
-
-        // Get connectivity status
-        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val networkInfo = connectivityManager.activeNetworkInfo
-        val isConnected = networkInfo != null && networkInfo.isConnected
-
-        // Find views from the updated layout
         val emailField = findViewById<EditText>(R.id.emailField)
         val passwordField = findViewById<EditText>(R.id.passwordField)
         val loginButton = findViewById<Button>(R.id.loginButton)
@@ -55,86 +29,70 @@ class LoginPage : AppCompatActivity() {
         val signUpTextView = findViewById<TextView>(R.id.signUpTextView)
         val forgotPasswordTextView = findViewById<TextView>(R.id.forgotPasswordTextView)
 
-        // Set up login button click listener
         loginButton.setOnClickListener {
             val email = emailField.text.toString().trim()
             val password = passwordField.text.toString()
 
-            // Validation
             if (email.isEmpty()) {
                 emailField.error = "Email is required"
-                emailField.requestFocus()
                 return@setOnClickListener
             }
 
             if (password.isEmpty()) {
                 passwordField.error = "Password is required"
-                passwordField.requestFocus()
                 return@setOnClickListener
             }
 
-            // Login logic based on connectivity
-            if (isConnected) {
-                // Online login using Firebase
-                mAuth.signInWithEmailAndPassword(email, password)
-                    .addOnSuccessListener {
-                        // Navigate to home screen
-                        startActivity(Intent(this, HomeScreenActivity::class.java))
-                        finish()
-                    }
-                    .addOnFailureListener { exception ->
-                        Log.e("Signin_Error", exception.message.toString())
-                        Toast.makeText(this, "Login failed: ${exception.message}", Toast.LENGTH_LONG).show()
-                    }
-            } else {
-                // Offline login using local database
-                val isAuthenticated = dbHelper.checkUser(email, password)
-
-                if (isAuthenticated) {
-                    startActivity(Intent(this, HomeScreenActivity::class.java))
-                    finish()
-                } else {
-                    Toast.makeText(this, "Login credentials do not match or no offline data available", Toast.LENGTH_LONG).show()
-                }
-            }
+            loginWithVolley(email, password)
         }
 
-        // Set up guest login button click listener
         guestLoginButton.setOnClickListener {
-            // Sign out any previously logged-in user
-            mAuth.signOut()
-
-            // Navigate to home screen as guest
+            // Guest login: no user ID needed
             startActivity(Intent(this, HomeScreenActivity::class.java))
             finish()
         }
 
-        // Set up sign up button click listener
         signUpTextView.setOnClickListener {
             startActivity(Intent(this, SignupPage::class.java))
         }
 
-        // Set up forgot password click listener
         forgotPasswordTextView.setOnClickListener {
-            val email = emailField.text.toString().trim()
-
-            if (email.isEmpty()) {
-                emailField.error = "Enter your email to reset password"
-                emailField.requestFocus()
-                return@setOnClickListener
-            }
-
-            if (isConnected) {
-                mAuth.sendPasswordResetEmail(email)
-                    .addOnSuccessListener {
-                        Toast.makeText(this, "Password reset email sent", Toast.LENGTH_LONG).show()
-                    }
-                    .addOnFailureListener { exception ->
-                        Toast.makeText(this, "Failed to send reset email: ${exception.message}", Toast.LENGTH_LONG).show()
-                    }
-            } else {
-                Toast.makeText(this, "Internet connection required to reset password", Toast.LENGTH_LONG).show()
-            }
+            Toast.makeText(this, "Forgot password functionality is not implemented yet", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun loginWithVolley(email: String, password: String) {
+        val queue = Volley.newRequestQueue(this)
+        val url = ApiConf.BASEURL+"Auth/login.php" // replace with your actual endpoint and port
+
+        val jsonBody = JSONObject()
+        jsonBody.put("email", email)
+        jsonBody.put("password", password)
+
+        val request = JsonObjectRequest(
+            Request.Method.POST, url, jsonBody,
+            { response ->
+                try {
+                    val userId = response.getString("user_id")
+                    saveUserId(userId)
+                    startActivity(Intent(this, HomeScreenActivity::class.java))
+                    finish()
+                } catch (e: Exception) {
+                    Toast.makeText(this, "Invalid server response", Toast.LENGTH_SHORT).show()
+                    Log.e("inv",e.message.toString())
+                }
+            },
+            { error ->
+                Log.e("VolleyLogin", "Error: ${error.message}")
+                Toast.makeText(this, "Login failed: ${error.message}", Toast.LENGTH_LONG).show()
+            }
+        )
+
+        queue.add(request)
+    }
+
+    private fun saveUserId(id: String) {
+        val sharedPref = getSharedPreferences("UserSession", Context.MODE_PRIVATE)
+        sharedPref.edit().putString("user_id", id).apply()
     }
 }

@@ -1,5 +1,6 @@
 package com.example.smdproject
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -21,6 +22,19 @@ class MainActivity : AppCompatActivity() {
             // Handler to navigate to the main activity after the splash screen timeout
         val intent = Intent(this, LoginPage::class.java)
         startActivity(intent)
+
+        val sharedPref = getSharedPreferences("UserSession", Context.MODE_PRIVATE)
+        val userId = sharedPref.getString("user_id", null)
+
+        if (userId != null) {
+            // Auto-login
+            startActivity(Intent(this, HomeScreenActivity::class.java))
+            finish()
+        } else {
+            // Show login screen
+            startActivity(Intent(this, LoginPage::class.java))
+            finish()
+        }
 
         /*
         val loginbutton = findViewById<Button>(R.id.loginbutton)

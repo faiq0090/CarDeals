@@ -1,5 +1,5 @@
 package com.example.smdproject.com.example.smdproject.apiconfig
 
-class ApiConf {
-    var BASE_URL = "https://api.openweathermap.org/data/2.5/"
+object ApiConf {
+    const val BASEURL = "http://192.168.18.18/carX/"
 }
