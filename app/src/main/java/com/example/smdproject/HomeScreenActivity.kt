@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import sellcar
 
 class HomeScreenActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView

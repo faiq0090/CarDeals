@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -28,13 +29,16 @@ class MainActivity : AppCompatActivity() {
 
         if (userId != null) {
             // Auto-login
+
             startActivity(Intent(this, HomeScreenActivity::class.java))
             finish()
         } else {
             // Show login screen
             startActivity(Intent(this, LoginPage::class.java))
             finish()
+
         }
+
 
         /*
         val loginbutton = findViewById<Button>(R.id.loginbutton)
