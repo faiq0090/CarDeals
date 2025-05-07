@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.smdproject.com.example.smdproject.apiconfig.ApiConf
 import org.json.JSONObject
@@ -63,33 +64,43 @@ class LoginPage : AppCompatActivity() {
 
     private fun loginWithVolley(email: String, password: String) {
         val queue = Volley.newRequestQueue(this)
-        val url = ApiConf.BASEURL+"Auth/login.php" // replace with your actual endpoint and port
+        val url = ApiConf.BASEURL + "Auth/login.php"
 
-        val jsonBody = JSONObject()
-        jsonBody.put("email", email)
-        jsonBody.put("password", password)
-
-        val request = JsonObjectRequest(
-            Request.Method.POST, url, jsonBody,
+        val request = object : StringRequest(
+            Method.POST, url,
             { response ->
                 try {
-                    val userId = response.getString("user_id")
-                    saveUserSession(userId)
-                    startActivity(Intent(this, HomeScreenActivity::class.java))
-                    finish()
+                    val jsonResponse = JSONObject(response)
+                    val status = jsonResponse.getString("status")
+                    if (status == "success") {
+                        val userId = jsonResponse.getString("user_id")
+                        saveUserSession(userId)
+                        startActivity(Intent(this, HomeScreenActivity::class.java))
+                        finish()
+                    } else {
+                        Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show()
+                    }
                 } catch (e: Exception) {
                     Toast.makeText(this, "Invalid server response", Toast.LENGTH_SHORT).show()
-                    Log.e("inv",e.message.toString())
+                    Log.e("VolleyLogin", "Parsing error: ${e.message}")
                 }
             },
             { error ->
                 Log.e("VolleyLogin", "Error: ${error.message}")
                 Toast.makeText(this, "Login failed: ${error.message}", Toast.LENGTH_LONG).show()
             }
-        )
+        ) {
+            override fun getParams(): MutableMap<String, String> {
+                val params = HashMap<String, String>()
+                params["email"] = email
+                params["password"] = password
+                return params
+            }
+        }
 
         queue.add(request)
     }
+
 
     private fun saveUserSession(id: String) {
         val sharedPref = getSharedPreferences("UserSession", Context.MODE_PRIVATE)
@@ -97,6 +108,9 @@ class LoginPage : AppCompatActivity() {
             .putBoolean("is_logged_in", true)
             .putString("user_id", id)
             .apply()
+
+
+
     }
 
 }

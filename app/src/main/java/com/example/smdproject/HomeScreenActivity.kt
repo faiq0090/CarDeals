@@ -1,14 +1,21 @@
 package com.example.smdproject
 
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
+import com.example.smdproject.com.example.smdproject.apiconfig.ApiConf
+import com.example.smdproject.db.CarDatabaseHelper
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeScreenActivity : AppCompatActivity() {
@@ -19,6 +26,63 @@ class HomeScreenActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         loadUserSession()
+
+        val url = ApiConf.BASEURL + "Ads/getad.php" // Adjust path as needed
+        val queue = Volley.newRequestQueue(this)
+
+        val request = JsonObjectRequest(
+            Request.Method.GET, url, null,
+            { response ->
+                try {
+                    if (response.getString("status") == "success") {
+                        val adsArray = response.getJSONArray("ads")
+                        val dbHelper = CarDatabaseHelper(this)
+
+                        for (i in 0 until adsArray.length()) {
+                            val adObject = adsArray.getJSONObject(i)
+                            val values = ContentValues().apply {
+                                put("id", adObject.getInt("id"))
+                                put("user_id", adObject.getInt("user_id"))
+                                put("car_type", adObject.getString("car_type"))
+                                put("car_model", adObject.getString("car_model"))
+                                put("city", adObject.getString("city"))
+                                put("model", adObject.getString("model"))
+                                put("registered", adObject.getString("registered"))
+                                put("color", adObject.getString("color"))
+                                put("fuel_type", adObject.getString("fuel_type"))
+                                put("body_type", adObject.getString("body_type"))
+                                put("transmission_type", adObject.getString("transmission_type"))
+                                // Change these lines
+                                put("engine_capacity", adObject.getString("engine_capacity"))
+                                put("km_driven", adObject.getString("km_driven"))
+                                put("price", adObject.getString("price"))
+                                put("description", adObject.getString("description"))
+                                put("address", adObject.getString("address"))
+                                put("image_base64", adObject.getString("image"))
+
+                            }
+
+                            dbHelper.insertCarAd(values)
+
+
+                        }
+
+                        Toast.makeText(this, "Ads synced to local database", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "No ads found", Toast.LENGTH_SHORT).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(this, "Error parsing response", Toast.LENGTH_SHORT).show()
+                    Log.e("VolleyAds", e.toString())
+                }
+            },
+            { error ->
+                Toast.makeText(this, "Network error: ${error.message}", Toast.LENGTH_SHORT).show()
+                Log.e("VolleyAds", error.toString())
+            }
+        )
+
+        queue.add(request)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
