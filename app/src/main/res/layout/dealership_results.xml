@@ -1,192 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".DealershipResults"
     android:orientation="vertical"
-    android:layout_height="match_parent">
+    tools:context=".DealershipResults">
 
+        <!-- Header -->
         <RelativeLayout
-            android:background="#0012BD"
             android:layout_width="match_parent"
-            android:layout_height="130dp">
+            android:layout_height="wrap_content"
+            android:background="#0012BD"
+            android:paddingVertical="16dp"
+            android:minHeight="80dp">
+
                 <ImageView
                     android:id="@+id/arrow_back22"
                     android:layout_width="40dp"
-                    android:layout_height="70dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_centerVertical="true"
+                    android:padding="8dp"
+                    android:background="@drawable/circle_background_white_borderless"
+                    android:src="@drawable/arrow_back"
                     app:tint="@color/white"
-                    android:contentDescription="Back Arrow"
-                    android:src="@drawable/arrow_back" />
+                    android:contentDescription="Back" />
 
                 <TextView
                     android:id="@+id/textView111"
-                    android:layout_width="400dp"
-                    android:layout_marginLeft="70dp"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="35dp"
-                    android:background="#0012BD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
                     android:text="Available Dealerships"
                     android:textColor="@color/white"
-                    android:textSize="30sp"
-                    android:textStyle="bold"
-                    />
-
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
         </RelativeLayout>
-        <RelativeLayout
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
+
+        <!-- Search Results Info -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="260dp">
-
-                <ImageView
-                    android:id="@+id/imageView11"
-                    android:layout_width="339dp"
-                    android:layout_height="250dp"
-                    android:layout_marginStart="36dp"
-                    app:srcCompat="@drawable/card" />
-
+            android:layout_height="wrap_content"
+            android:background="#F5F5F5"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView12"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/textViewSearchInfo"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginLeft="85dp"
-                    android:layout_centerHorizontal="true"
-                    android:text="Toyota Multan Motors"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    />
-
-                <ImageView
-                    android:id="@+id/imageView13"
-                    android:layout_width="52dp"
-                    android:layout_height="38dp"
-                    app:tint="@color/white"
-                    app:srcCompat="@drawable/location"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="75dp"
-                    />
+                    android:text="Showing results for Toyota in Multan"
+                    android:textColor="#333333"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textView14"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/textViewResultCount"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="80dp"
-                    android:layout_marginLeft="106dp"
-                    android:text="Bosan Road, Multan"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    />
+                    android:text="2 dealerships found"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp" />
+        </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/imageView15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="110dp"
-                    android:layout_marginLeft="270dp"
-                    app:srcCompat="@drawable/tlog" />
-                <ImageView
-                    android:id="@+id/imageView16"
-                    android:layout_width="52dp"
-                    android:layout_height="38dp"
-                    app:tint="@color/white"
-                    app:srcCompat="@drawable/call"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="150dp"
-                    />
-
-                <TextView
-                    android:id="@+id/textView17"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="160dp"
-                    android:layout_marginLeft="106dp"
-                    android:text="0611234567"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
+        <!-- Results RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewDealerships"
             android:layout_width="match_parent"
-            android:layout_height="260dp">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:paddingVertical="8dp" />
+
+        <!-- No Results View (Initially invisible) -->
+        <LinearLayout
+            android:id="@+id/layoutNoResults"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:visibility="gone">
 
                 <ImageView
-                    android:id="@+id/imageView21"
-                    android:layout_width="339dp"
-                    android:layout_height="250dp"
-                    android:layout_marginStart="36dp"
-                    app:srcCompat="@drawable/card" />
-
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/arrow_back"
+                    app:tint="#CCCCCC" />
 
                 <TextView
-                    android:id="@+id/textView22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginLeft="85dp"
-                    android:layout_centerHorizontal="true"
-                    android:text="Toyota City Motors"
-                    android:textColor="@color/white"
+                    android:layout_marginTop="16dp"
+                    android:text="No Dealerships Found"
+                    android:textColor="#333333"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    />
-
-                <ImageView
-                    android:id="@+id/imageView23"
-                    android:layout_width="52dp"
-                    android:layout_height="38dp"
-                    app:tint="@color/white"
-                    app:srcCompat="@drawable/location"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="75dp"
-                    />
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textView24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="80dp"
-                    android:layout_marginLeft="106dp"
-                    android:text="Cantt, Multan"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    />
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="We couldn't find any dealerships matching your search criteria."
+                    android:textColor="#666666"
+                    android:textSize="16sp" />
 
-                <ImageView
-                    android:id="@+id/imageView25"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="110dp"
-                    android:layout_marginLeft="270dp"
-                    app:srcCompat="@drawable/tlog" />
-                <ImageView
-                    android:id="@+id/imageView26"
-                    android:layout_width="52dp"
-                    android:layout_height="38dp"
-                    app:tint="@color/white"
-                    app:srcCompat="@drawable/call"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="150dp"
-                    />
-
-                <TextView
-                    android:id="@+id/textView27"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="160dp"
-                    android:layout_marginLeft="106dp"
-                    android:text="0511234567"
+                <Button
+                    android:id="@+id/buttonTryAgain"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="24dp"
+                    android:backgroundTint="#0012BD"
+                    android:text="Try Another Search"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
-                    />
-        </RelativeLayout>
+                    android:textSize="16sp" />
+        </LinearLayout>
 </LinearLayout>
