@@ -20,7 +20,6 @@ import androidx.fragment.app.Fragment
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.smdproject.R
-import com.example.smdproject.com.example.smdproject.apiconfig.ApiConf
 import java.io.ByteArrayOutputStream
 
 class sellcar : Fragment() {

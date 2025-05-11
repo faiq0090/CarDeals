@@ -8,105 +8,124 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.Switch
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import android.content.Context
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import android.util.Log
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import org.json.JSONObject
 
 class profile : Fragment() {
-
-    private lateinit var userRef: DatabaseReference
-    private var currentUser: FirebaseUser? = null
 
     private lateinit var emailEditText: EditText
     private lateinit var nameEditText: EditText
     private lateinit var phoneEditText: EditText
-
+    private lateinit var passwordEditText: EditText
     private lateinit var switchDarkMode: Switch
+
+    private val PROFILE_API_URL = ApiConf.BASEURL + "Users/get_profile.php"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
 
+        // Apply saved theme
         val sharedPref = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val themeMode = sharedPref.getInt("themeMode", AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         applyTheme(themeMode)
 
-        val EditIcon = view.findViewById<Button>(R.id.Editbutton1)
-        EditIcon.setOnClickListener {
+        // Initialize views
+        emailEditText = view.findViewById(R.id.email)
+        nameEditText = view.findViewById(R.id.name)
+        phoneEditText = view.findViewById(R.id.phone)
+        passwordEditText = view.findViewById(R.id.pass)
+        switchDarkMode = view.findViewById(R.id.switch1)
+
+        // Disable editing
+        emailEditText.isEnabled = false
+        nameEditText.isEnabled = false
+        phoneEditText.isEnabled = false
+        passwordEditText.isEnabled = false
+
+        // Edit button action
+        val editButton = view.findViewById<Button>(R.id.Editbutton1)
+        editButton.setOnClickListener {
             val intent = Intent(context, EditProfile::class.java)
             startActivity(intent)
         }
 
-        emailEditText = view.findViewById(R.id.email)
-        nameEditText = view.findViewById(R.id.name)
-        phoneEditText = view.findViewById(R.id.phone)
-
-        switchDarkMode = view.findViewById(R.id.switch1)
-        // Example of toggling dark mode
+        // Theme switch action
         switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
-            val themeMode = if (isChecked) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO
-            applyTheme(themeMode)
-            saveThemePreference(themeMode)
+            val newTheme = if (isChecked) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO
+            applyTheme(newTheme)
+            saveThemePreference(newTheme)
         }
-
 
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        loadUserProfile()
+    }
 
-        currentUser = FirebaseAuth.getInstance().currentUser
-        currentUser?.let { user ->
-            userRef = FirebaseDatabase.getInstance().reference
-                .child("Users")
-                .child(user.uid)
+    override fun onResume() {
+        super.onResume()
+        loadUserProfile()
+    }
 
-            userRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        val email = dataSnapshot.child("email").getValue(String::class.java)
-                        val name = dataSnapshot.child("name").getValue(String::class.java)
-                        val phone = dataSnapshot.child("phone").getValue(String::class.java)
+    private fun loadUserProfile() {
+        val sharedPref = requireContext().getSharedPreferences("UserSession", Context.MODE_PRIVATE)
+        val userId = sharedPref.getString("user_id", null)
 
-                        emailEditText.setText(email)
-                        nameEditText.setText(name)
-                        phoneEditText.setText(phone)
+        if (!userId.isNullOrEmpty()) {
+            val queue = Volley.newRequestQueue(requireContext())
+
+            val request = object : StringRequest(
+                Request.Method.POST, PROFILE_API_URL,
+                Response.Listener { response ->
+                    try {
+                        val jsonResponse = JSONObject(response)
+
+                        if (jsonResponse.getString("status") == "success") {
+                            emailEditText.setText(jsonResponse.getString("email"))
+                            nameEditText.setText(jsonResponse.getString("name"))
+                            phoneEditText.setText(jsonResponse.getString("phoneno"))
+                            passwordEditText.setText("********") // Placeholder
+                        } else {
+                            Toast.makeText(requireContext(), "Failed to load profile: ${jsonResponse.optString("message", "Unknown error")}", Toast.LENGTH_SHORT).show()
+                        }
+                    } catch (e: Exception) {
+                        Log.e("ProfileFragment", "Error parsing response: ${e.message}")
+                        Toast.makeText(requireContext(), "Error loading profile data", Toast.LENGTH_SHORT).show()
                     }
+                },
+                Response.ErrorListener { error ->
+                    Log.e("ProfileFragment", "Error fetching profile: ${error.message}")
+                    Toast.makeText(requireContext(), "Network error. Please try again.", Toast.LENGTH_SHORT).show()
                 }
+            ) {
+                override fun getParams(): Map<String, String> {
+                    val params = HashMap<String, String>()
+                    params["user_id"] = userId
+                    return params
+                }
+            }
 
-                override fun onCancelled(databaseError: DatabaseError) {
-                    // Handle error
-                }
-            })
+            queue.add(request)
+        } else {
+            Toast.makeText(requireContext(), "Please log in to view your profile", Toast.LENGTH_SHORT).show()
         }
     }
 
-
-    private fun replaceFragment(fragment: Fragment) {
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.frame_container, fragment)
-            .addToBackStack(null)
-            .commit()
-    }
-
-    fun applyTheme(themeMode: Int) {
-        when (themeMode) {
-            AppCompatDelegate.MODE_NIGHT_YES -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            AppCompatDelegate.MODE_NIGHT_NO -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-        }
+    private fun applyTheme(themeMode: Int) {
+        AppCompatDelegate.setDefaultNightMode(themeMode)
     }
 
     private fun saveThemePreference(themeMode: Int) {
@@ -114,5 +133,10 @@ class profile : Fragment() {
         sharedPref.edit().putInt("themeMode", themeMode).apply()
     }
 
-
+    private fun replaceFragment(fragment: Fragment) {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.frame_container, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
 }

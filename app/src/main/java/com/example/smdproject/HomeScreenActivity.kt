@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.example.smdproject.com.example.smdproject.apiconfig.ApiConf
 import com.example.smdproject.db.CarDatabaseHelper
 import com.google.android.material.bottomnavigation.BottomNavigationView
 

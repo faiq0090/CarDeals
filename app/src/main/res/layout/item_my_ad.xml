@@ -1,0 +1,53 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/card_background"
+    android:elevation="4dp"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- Image of the car -->
+    <ImageView
+        android:id="@+id/carImage"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="10dp" />
+
+    <!-- Title of the car -->
+    <TextView
+        android:id="@+id/carTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Car Title"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:layout_marginBottom="5dp"/>
+
+    <!-- Price of the car -->
+    <TextView
+        android:id="@+id/carPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Price"
+        android:textSize="16sp"
+        android:textColor="#009688"
+        android:layout_marginBottom="5dp"/>
+
+    <!-- Description or more details button -->
+    <TextView
+        android:id="@+id/showDetailsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show More Details"
+        android:textSize="14sp"
+        android:textColor="#1E88E5"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        android:focusable="true"/>
+
+</LinearLayout>

@@ -14,7 +14,6 @@ import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.smdproject.com.example.smdproject.apiconfig.ApiConf
 import org.json.JSONObject
 
 class LoginPage : AppCompatActivity() {

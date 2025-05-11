@@ -65,7 +65,8 @@ class InsuranceResults : AppCompatActivity() {
         thread {
             try {
                 // Change this to your actual API URL
-                val apiUrl = "http://192.168.18.111/server/get_insurance.php"
+                val apiUrl = ApiConf.BASEURL+ "Directory/get_insurance.php"
+
 
                 // Open connection
                 val url = URL(apiUrl)

@@ -17,8 +17,7 @@ import org.json.JSONObject
 class DealershipHome: AppCompatActivity() {
 
     // Define API endpoint
-    private val API_URL = "http://192.168.18.177/server/get_dealership.php"
-
+    private val API_URL = ApiConf.BASEURL + "Directory/get_dealerships.php"
     private lateinit var brandEditText: EditText
     private lateinit var locationEditText: EditText
     private lateinit var findButton: Button

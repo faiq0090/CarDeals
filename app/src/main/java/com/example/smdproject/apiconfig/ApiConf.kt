@@ -1,5 +1,5 @@
-package com.example.smdproject.com.example.smdproject.apiconfig
+package com.example.smdproject
 
 object ApiConf {
-    const val BASEURL = "http://192.168.18.18/carX/"
+    const val BASEURL = "http://192.168.18.111/carX/"
 }

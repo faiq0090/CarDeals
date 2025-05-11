@@ -1,169 +1,147 @@
 package com.example.smdproject
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.content.Context
-import android.content.Intent
-import android.media.RingtoneManager
-import android.os.Build
 import android.os.Bundle
-import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
-import androidx.core.app.NotificationCompat
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.storage.FirebaseStorage
+import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import org.json.JSONObject
+import java.util.HashMap
 
-class EditProfile: AppCompatActivity() {
-
-    private lateinit var userRef: DatabaseReference
-    private var currentUser: FirebaseUser? = null
+class EditProfile : AppCompatActivity() {
 
     private lateinit var emailEditText: EditText
-    private lateinit var nameEditText: EditText
     private lateinit var phoneEditText: EditText
+    private lateinit var nameEditText: EditText
+    private lateinit var passwordEditText: EditText
+    private lateinit var saveButton: Button
+    private lateinit var backButton: ImageView
 
-    private lateinit var mAuth: FirebaseAuth
-    private lateinit var database: FirebaseDatabase
-    private lateinit var storage: FirebaseStorage
-
-    companion object {
-        private const val NOTIFICATION_CHANNEL_ID = "editprofile_channel"
-        private const val NOTIFICATION_ID = 124
-    }
-
+    private val UPDATE_PROFILE_URL = ApiConf.BASEURL + "Users/update_profile.php"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.edit_profile)
 
         emailEditText = findViewById(R.id.email)
-        nameEditText = findViewById(R.id.name)
         phoneEditText = findViewById(R.id.phone)
+        nameEditText = findViewById(R.id.name)
+        passwordEditText = findViewById(R.id.pass)
+        saveButton = findViewById(R.id.button1)
+        backButton = findViewById(R.id.arrow_back22)
 
-        currentUser = FirebaseAuth.getInstance().currentUser
-        currentUser?.let { user ->
-            userRef = FirebaseDatabase.getInstance().reference
-                .child("Users")
-                .child(user.uid)
+        loadUserData()
 
-            userRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        val email = dataSnapshot.child("email").getValue(String::class.java)
-                        val name = dataSnapshot.child("name").getValue(String::class.java)
-                        val phone = dataSnapshot.child("phone").getValue(String::class.java)
-
-                        emailEditText.setText(email)
-                        nameEditText.setText(name)
-                        phoneEditText.setText(phone)
-                    }
-                }
-
-                override fun onCancelled(databaseError: DatabaseError) {
-                    // Handle error
-                }
-            })
+        backButton.setOnClickListener {
+            finish()
         }
 
-        val UpdateProfile1: Button = findViewById(R.id.button1)
+        saveButton.setOnClickListener {
+            updateProfile()
+        }
+    }
 
-        UpdateProfile1.setOnClickListener {
+    private fun loadUserData()
+    {
+        val sharedPref = this.getSharedPreferences("UserSession", Context.MODE_PRIVATE)
+        val userId = sharedPref.getString("user_id", null)
+       // val userId = 2 // 🔴 Hardcoded for testing
 
-            val database = FirebaseDatabase.getInstance()
-            val databaseRef = database.getReference("Users")
+        val queue = Volley.newRequestQueue(this)
+        val url = ApiConf.BASEURL + "Users/get_profile.php"
 
-            val currentUser = FirebaseAuth.getInstance().currentUser
-            val userId = currentUser?.uid
+        val stringRequest = object : StringRequest(
+            Request.Method.POST, url,
+            Response.Listener { response ->
+                try {
+                    val jsonResponse = JSONObject(response)
+                    if (jsonResponse.getString("status") == "success") {
+                        emailEditText.setText(jsonResponse.getString("email"))
+                        phoneEditText.setText(jsonResponse.getString("phoneno"))
+                        nameEditText.setText(jsonResponse.getString("name"))
 
-            val updatedName = findViewById<EditText>(R.id.name).text.toString()
-            val updatedPhone = findViewById<EditText>(R.id.phone).text.toString()
-            val updatedEmail = findViewById<EditText>(R.id.email).text.toString()
-
-            val updatedUser = hashMapOf(
-                "email" to updatedEmail,
-                "name" to updatedName,
-                "phone" to updatedPhone
-            )
-
-
-            userId?.let {
-                databaseRef.child(it).updateChildren(updatedUser as Map<String, Any>)
-                    .addOnSuccessListener {
-                        Toast.makeText(this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show()
-                        sendNotification("Profile Edited", "Profile Edited")
+                        emailEditText.isFocusableInTouchMode = true
+                        phoneEditText.isFocusableInTouchMode = true
+                        nameEditText.isFocusableInTouchMode = true
+                    } else {
+                        Toast.makeText(this, "Failed to load profile", Toast.LENGTH_SHORT).show()
                     }
-                    .addOnFailureListener {
-                        Toast.makeText(this, "Failed to update profile", Toast.LENGTH_SHORT).show()
-                    }
+                } catch (e: Exception) {
+                    Toast.makeText(this, "Error parsing response", Toast.LENGTH_SHORT).show()
+                }
+            },
+            Response.ErrorListener {
+                Toast.makeText(this, "Network error", Toast.LENGTH_SHORT).show()
+            }) {
+            override fun getParams(): Map<String, String> {
+                val params = HashMap<String, String>()
+                params["user_id"] = userId.toString()
+                return params
             }
         }
 
-        val arrowBack16 =findViewById<ImageView>(R.id.arrow_back22)
+        queue.add(stringRequest)
+    }
 
-        // Set OnClickListener to the arrow_back9 icon
-        arrowBack16.setOnClickListener {
-            // Replace the current fragment with the Screen8 fragment
-            openFragment()
+    private fun updateProfile() {
+        val email = emailEditText.text.toString().trim()
+        val phone = phoneEditText.text.toString().trim()
+        val name = nameEditText.text.toString().trim()
+        val password = passwordEditText.text.toString().trim()
+
+        if (email.isEmpty() || name.isEmpty()) {
+            Toast.makeText(this, "Email and name are required", Toast.LENGTH_SHORT).show()
+            return
         }
 
-    }
-    private fun sendNotification(title: String, message: String) {
-        val notificationManager = this.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val sharedPref = this.getSharedPreferences("UserSession", Context.MODE_PRIVATE)
+        val userId = sharedPref.getString("user_id", null)
 
-        // Set the sound for the notification
-        val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+       // val userId = 2 // 🔴 Hardcoded for testing
 
-        val notificationBuilder = NotificationCompat.Builder(this,
-            EditProfile.NOTIFICATION_CHANNEL_ID
-        )
+        saveButton.isEnabled = false
 
-            .setContentTitle(title)
-            .setContentText(message)
-            .setSmallIcon(R.drawable.notifications)
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setSound(defaultSoundUri) // Set the notification sound
+        val queue = Volley.newRequestQueue(this)
 
-        // Since Android Oreo, notification channel is required.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                EditProfile.NOTIFICATION_CHANNEL_ID,
-                "Screenshot Notification Channel",
-                NotificationManager.IMPORTANCE_DEFAULT
-            )
-            notificationManager.createNotificationChannel(channel)
+        val stringRequest = object : StringRequest(
+            Request.Method.POST, UPDATE_PROFILE_URL,
+            Response.Listener { response ->
+                try {
+                    val jsonResponse = JSONObject(response)
+                    if (jsonResponse.getString("status") == "success") {
+                        Toast.makeText(this, "Profile updated successfully", Toast.LENGTH_SHORT).show()
+                        finish()
+                    } else {
+                        Toast.makeText(this, jsonResponse.getString("message"), Toast.LENGTH_SHORT).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(this, "Error parsing response", Toast.LENGTH_SHORT).show()
+                }
+                saveButton.isEnabled = true
+            },
+            Response.ErrorListener {
+                Toast.makeText(this, "Network error", Toast.LENGTH_SHORT).show()
+                saveButton.isEnabled = true
+            }) {
+            override fun getParams(): Map<String, String> {
+                val params = HashMap<String, String>()
+                params["user_id"] = userId.toString()
+                params["email"] = email
+                params["phoneno"] = phone
+                params["name"] = name
+                if (password.isNotEmpty()) {
+                    params["password"] = password
+                }
+                return params
+            }
         }
 
-        // Show the notification
-        notificationManager.notify(EditProfile.NOTIFICATION_ID, notificationBuilder.build())
-    }
-    private fun openFragment() {
-        // Create an instance of your fragment
-        val fragment = profile()
-
-        // Get the FragmentManager
-        val fragmentManager = supportFragmentManager
-
-        // Start a new FragmentTransaction
-        val transaction: FragmentTransaction = fragmentManager.beginTransaction()
-
-        // Replace the existing fragment (if any) with your fragment
-        transaction.replace(R.id.frame_container, fragment)
-
-        // Commit the transaction
-        transaction.commit()
+        queue.add(stringRequest)
     }
 }
